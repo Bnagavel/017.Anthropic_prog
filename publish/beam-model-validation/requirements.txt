@@ -1,0 +1,43 @@
+# Core ML stack (CUDA 11.8 build for GPU; comment out cu118 line for CPU-only)
+# If on CPU-only: replace the PyTorch line with the CPU index-url, or install from PyPI default
+# Windows note: bitsandbytes may not work on native Windows; use fp16 or WSL2 if needed
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+# PyTorch (pin to a stable 2.2.x)
+torch==2.2.2+cu118
+torchvision==0.17.2+cu118
+torchaudio==2.2.2+cu118
+
+# Hugging Face stack
+transformers==4.41.2
+accelerate==0.31.0
+datasets==2.19.0
+peft==0.11.1
+
+# Optional quantization; may fail on Windows
+bitsandbytes==0.43.1
+
+# Tracking and visualization
+wandb==0.17.3
+tensorboard==2.16.2
+
+# Scientific Python
+numpy==1.26.4
+scipy==1.11.4
+pandas==2.2.2
+matplotlib==3.8.4
+seaborn==0.13.2
+scikit-learn==1.4.2
+
+# API
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+pydantic==2.8.2
+
+# Utilities
+pyyaml==6.0.1
+rich==13.7.1
+plotly==5.22.0
+
+# For testing and linting (optional)
+pytest==8.2.0

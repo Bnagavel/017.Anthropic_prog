@@ -1,0 +1,41 @@
+recipe: spectrum_postprocess
+version: 1.0.0
+description: "Complete SPECTRUM Spectrum Pre/Post-Processing Pipeline: .nrang.out sequence extraction, 'S' switch logic, X900 unrolling, Coincident Max GAG correlation, and C-Spec / fFI severity evaluation."
+inputs:
+  - role: spectrum_folder
+    accepts: [SPECTRUM_project_file, nrang_out, rang_out, elfo_deck, patran_rpt]
+extract:
+  - field: stress_1
+    kind: stress
+    source: nrang_out
+    unit: ksi
+  - field: stress_2
+    kind: stress
+    source: nrang_out
+    unit: ksi
+  - field: max_gag_load
+    kind: stress
+    source: rang_out
+    unit: ksi
+  - field: cspec_index
+    kind: stress
+    source: rang_out
+    unit: ksi
+  - field: ffi_index
+    kind: stress
+    source: rang_out
+    unit: ksi
+compute:
+  - switched_stress = swap_on_s_suffix(stress_1, stress_2, switch_id)
+  - x900_sequence = unroll_x900(switched_stress, occurrences >= 1)
+  - resultant_fbrg = sqrt(fx^2 + fy^2)
+checks:
+  - unit_consistency
+  - missing_provenance
+  - fbrg_vector_mismatch
+narrate:
+  sections: [scope, methodology, gag_summary, severity_comparison, conclusions]
+  glossary: config/glossary/oem_a.yaml
+output:
+  excel_mode: live_formulas
+  sheets: [Control, _nrang, _nrangswitch, _nrangX900, _X900Plot, Coincident_GAG, CSPEC_fFI_Summary, Audit_Trail, Red_Flags, Run_Manifest]

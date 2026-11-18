@@ -1,0 +1,27 @@
+blueprint: spectrum
+version: 1.0.0
+family: "SPECTRUM 6.0.4 CRPR / NRANG Spectrum Suite"
+default_unit: "ksi"
+formats:
+  nrang_out:
+    header_lines: 3
+    signature: "NON RANGPAIRED OUTPUT"
+    columns:
+      - { index: 0, name: "stress_1", type: "float" }
+      - { index: 1, name: "stress_2", type: "float" }
+      - { index: 2, name: "occurrences", type: "float" }
+      - { index: 3, name: "mission_line_id", type: "str" }
+      - { index: 4, name: "description", type: "str" }
+      - { index: 5, name: "switch_id", type: "str" }
+  rang_out:
+    header_lines: 3
+    signature: "RANGE PAIRED OUTPUT"
+    columns:
+      - { index: 0, name: "block_id", type: "str" }
+      - { index: 1, name: "max_val", type: "float" }
+      - { index: 2, name: "min_val", type: "float" }
+      - { index: 3, name: "occurrences", type: "float" }
+      - { index: 4, name: "flights", type: "float" }
+      - { index: 5, name: "max_line", type: "int" }
+      - { index: 6, name: "min_line", type: "int" }
+      - { index: 7, name: "gag_flag", type: "str", optional: true }

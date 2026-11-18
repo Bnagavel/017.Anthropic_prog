@@ -1,0 +1,34 @@
+# F&DT-LocalAI Model Tiers Configuration (RTX A500 4 GB VRAM + 64 GB RAM)
+tiers:
+  fast:
+    name: "gemma2:2b-instruct-q4_K_M"
+    fallback_names: ["gemma2:2b", "llama3.2:3b-instruct-q4_K_M"]
+    licence: "Gemma Terms"
+    weights_gb: 1.6
+    kv_cache_q8_gb: 0.23
+    num_ctx: 8192
+    temperature: 0.0
+    seed: 42
+    placement: "100% GPU (~1.85 GB VRAM)"
+    sha256: "e5679b80fa2c6f9b78a4a6e39b9e96b76821c07d94a8b878c18b35e733b1a001"
+
+  reasoning:
+    name: "qwen2.5:7b-instruct-q4_K_M"
+    fallback_names: ["qwen2.5:7b", "gemma2:2b-instruct-q4_K_M"]
+    licence: "Apache-2.0"
+    weights_gb: 4.7
+    kv_cache_q8_gb: 0.23
+    num_ctx: 8192
+    temperature: 0.0
+    seed: 42
+    placement: "~20/28 layers GPU, rest in 64GB RAM"
+    sha256: "a41f82c92107d8e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f70819"
+
+  embed:
+    name: "nomic-embed-text"
+    fallback_names: ["bge-small-en-v1.5"]
+    licence: "Apache-2.0"
+    weights_gb: 0.27
+    num_ctx: 2048
+    placement: "CPU (16 threads)"
+    sha256: "b12c34d56e78f90a1b2c3d4e5f60718293a4b5c6d7e8f901a2b3c4d5e6f70812"

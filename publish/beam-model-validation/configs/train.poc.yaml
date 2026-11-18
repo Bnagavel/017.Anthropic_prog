@@ -1,0 +1,38 @@
+# Small proof-of-concept training config
+seed: 42
+
+# Data
+data:
+  input_path: data/beam_training_data.csv
+  text_column: text
+  max_samples: 100
+  train_split: 0.9
+
+# Model
+model:
+  base: microsoft/DialoGPT-small
+  lora:
+    r: 4
+    alpha: 8
+    dropout: 0.05
+  precision: fp16  # use fp16 if GPU available; fall back to fp32 on CPU
+
+# Training
+train:
+  epochs: 1
+  lr: 5.0e-4
+  weight_decay: 0.0
+  per_device_batch_size: 1
+  grad_accum_steps: 4
+  warmup_ratio: 0.1
+  gradient_checkpointing: true
+  save_steps: 50
+  logging_steps: 10
+  output_dir: checkpoints/poc
+  max_seq_length: 384
+  lr_scheduler: cosine
+
+# Accelerate/Deepspeed (optional)
+distributed:
+  use_accelerate: true
+  deepspeed: null

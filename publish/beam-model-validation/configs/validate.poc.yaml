@@ -1,0 +1,20 @@
+# Validation config for PoC
+seed: 42
+
+# Data
+data:
+  input_path: data/beam_training_data.csv
+  n_samples: 100
+  text_column: text
+
+# Metrics thresholds
+metrics:
+  max_stress_mape: 0.10     # <= 10%
+  max_deflection_mape: 0.10 # <= 10%
+  physics_compliance: 0.95  # >= 95%
+  units_consistency: 0.98    # >= 98%
+
+# Output
+output:
+  report_path: logs/validation_report.json
+  plot_dir: logs/plots

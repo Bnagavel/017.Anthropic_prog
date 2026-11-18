@@ -1,0 +1,41 @@
+# F&DT-LocalAI dependencies (install offline: pip install --no-index --find-links wheelhouse -r requirements.txt)
+
+# Core / domain
+pydantic>=2.8
+pint>=0.24               # units & dimensional analysis
+pyyaml>=6.0
+jinja2>=3.1              # phrase templates
+
+# Ingestion
+pyNastran>=1.4           # BDF / OP2 / F06
+rainflow>=3.2            # cycle counting
+PyMuPDF>=1.24            # digital PDF text/outline
+pdfplumber>=0.11         # digital PDF tables
+openpyxl>=3.1            # xlsx/xlsm read + render
+xlrd>=2.0                # legacy .xls
+pandas>=2.2
+numpy>=1.26
+
+# Entity resolution
+rapidfuzz>=3.9
+
+# Storage & retrieval
+duckdb>=1.0
+pyarrow>=16.0
+lancedb>=0.13            # embedded vector + full-text index
+
+# LLM
+ollama>=0.3              # default backend (JSON-schema structured outputs)
+# llama-cpp-python>=0.2.89   # optional in-process backend (GBNF grammars)
+
+# Rendering
+python-docx>=1.1         # optional Word output
+docxtpl>=0.18
+XlsxWriter>=3.2          # Fast multi-tab Excel generator with formula & chart support
+plotly>=5.22
+
+# UI
+streamlit>=1.38
+
+# Dev / test
+pytest>=8.0
