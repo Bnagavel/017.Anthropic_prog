@@ -950,20 +950,6 @@ class EngineeringReportGenerator:
 - **Training Logs:** Available in `logs/` directory
 - **Example Problems:** Check `examples/` folder
 
-### 2. Community Support
-
-- **GitHub Issues:** Report bugs and request features
-- **Discussion Forum:** Ask questions and share experiences
-- **Slack Channel:** Real-time support and discussion
-
-### 3. Professional Support
-
-For enterprise deployments and custom requirements:
-
-- **Email:** [support@beamanalysis-ai.com](mailto:support@beamanalysis-ai.com)
-- **Consultation:** Schedule technical consultation sessions
-- **Custom Training:** Domain-specific model adaptation services
-
 ---
 
 **Note:** This implementation guide is designed to be executable and practical. All code examples are tested and ready to use. For the latest updates and additional resources, visit the project repository.

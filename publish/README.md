@@ -1,15 +1,14 @@
-﻿# Public portfolio staging folder
+# Staging folder for shareable projects
 
-Each subfolder is a separate, sanitised project intended to become its own public GitHub repository. These are shared as a glimpse of my work, not as supported products.
+Each subfolder is a separate project that can become its own repository. Use a fresh repo with clean history, and keep it **private** unless an interviewer asks to see it.
 
-| Folder | Content |
-|---|---|
-| `fdt-localai/` | Offline LLM assistant with a numeric-claim verifier |
-| `agent-loop/` | Multi-model coding-agent loop with a router and human approval gate |
-| `beam-model-validation/` | Fine-tuning validation against closed-form beam solutions |
-| `phd-lightning-surrogate/` | Pseudocode and algorithm notes only (no code or data) from my PhD work |
+| Folder | Content | Status |
+|---|---|---|
+| `beam-model-validation/` | Fine-tuning validation against closed-form beam solutions (synthetic data) | Checked; private, share on request |
+| `phd-lightning-surrogate/` | Pseudocode and algorithm notes only (no code or data) from PhD work | **Private. Needs Prof. Adrian Murphy's (first PhD supervisor) approval before anyone outside sees it** |
 
-`ai-control-project/` (one level up) is also ready to publish as its own repository.
+Removed on 21 Nov 2026 because of employer-related risk: `fdt-localai/` (from `013.LocalAI`) and `agent-loop/` (from `016.24x7_Agent`). The originals are untouched in `C:\Bask\00.AI`.
 
-Before pushing any of them: check for secrets, local paths and employer-confidential data, and use a fresh repo with clean history.
+`ai-control-project/` (one level up) is the main shareable project.
 
+Before pushing any of them: check for secrets, local paths and employer-confidential data.

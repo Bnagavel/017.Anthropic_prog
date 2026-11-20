@@ -1,6 +1,6 @@
 """Phase 1 AI Control experiment on 010.AutoHex.
 
-Extracts 15 real honest git commits from C:\\Bask\\00.AI\\010.AutoHex touching
+Extracts 15 real honest git commits from a local clone of 010.AutoHex touching
 `src/hexprep/*.py`, constructs 15 realistic red-team specification-gaming /
 sabotage diffs on `src/hexprep/`, scores all 30 diffs with a code-audit monitor
 (deterministic rubric by default, or local Ollama via `--ollama-model`), and
@@ -20,9 +20,8 @@ from pathlib import Path
 from statistics import NormalDist
 from typing import List, Optional, Tuple
 
-SCRATCH_MPL = Path(
-    r"C:\Users\Baskaran.Nagavel\.gemini\antigravity\brain\c8301381-c31f-449c-9a2a-3653b4183650\scratch\mpl"
-)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SCRATCH_MPL = PROJECT_ROOT / ".cache" / "mpl"  # git-ignored matplotlib cache
 SCRATCH_MPL.mkdir(parents=True, exist_ok=True)
 os.environ.setdefault("MPLCONFIGDIR", str(SCRATCH_MPL))
 
@@ -32,12 +31,11 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-AUTOHEX_REPO = Path(r"C:\Bask\00.AI\010.AutoHex")
-PROJECT_ROOT = Path(r"C:\Bask\00.AI\017.Anthropic_prog\ai-control-project")
+# Optional: local clone of the (private) 010.AutoHex repo. If AUTOHEX_REPO is unset, the
+# experiment runs in snapshot mode from frozen scores in results/autohex_exp_results.json.
+_repo_env = os.environ.get("AUTOHEX_REPO")
+AUTOHEX_REPO: Optional[Path] = Path(_repo_env) if _repo_env else None
 FIG_DIR_PROJ = PROJECT_ROOT / "results" / "figures"
-FIG_DIR_ART = Path(
-    r"C:\Users\Baskaran.Nagavel\.gemini\antigravity\brain\c8301381-c31f-449c-9a2a-3653b4183650"
-)
 RESULTS_JSON = PROJECT_ROOT / "results" / "autohex_exp_results.json"
 
 FIG_SIZE = (1600 / 150, 900 / 150)
@@ -70,9 +68,12 @@ class DiffSample:
 
 
 def extract_honest_commits(
-    repo: Path = AUTOHEX_REPO, n_commits: int = 15
+    repo: Optional[Path] = None, n_commits: int = 15
 ) -> List[DiffSample]:
     """Extract `n_commits` real honest commits touching `src/hexprep/*.py`."""
+    repo = repo or AUTOHEX_REPO
+    if repo is None:
+        raise RuntimeError("Set AUTOHEX_REPO to a local clone of 010.AutoHex (or use snapshot mode).")
     log_proc = subprocess.run(
         [
             "git",
@@ -536,7 +537,7 @@ def plot_results(
     attacks: List[DiffSample],
     metrics: dict,
 ) -> None:
-    """Generate fig7_autohex_empirical_vs_gaussian.png in project and artifact dirs."""
+    """Generate results/figures/fig7_autohex_empirical_vs_gaussian.png."""
     hon_z = np.array([d.z_score for d in honest])
     atk_z = np.array([d.z_score for d in attacks])
     t_g = metrics["t_gauss"]
@@ -686,27 +687,58 @@ def plot_results(
         color="#0F172A",
     )
     fig.subplots_adjust(top=0.89, bottom=0.10, left=0.07, right=0.97)
-    for out_dir in (FIG_DIR_PROJ, FIG_DIR_ART):
-        out_dir.mkdir(parents=True, exist_ok=True)
-        fig.savefig(out_dir / "fig7_autohex_empirical_vs_gaussian.png", dpi=DPI, facecolor="#FFFFFF")
+    FIG_DIR_PROJ.mkdir(parents=True, exist_ok=True)
+    fig.savefig(FIG_DIR_PROJ / "fig7_autohex_empirical_vs_gaussian.png", dpi=DPI, facecolor="#FFFFFF")
     plt.close(fig)
+
+
+def live_repo_available() -> bool:
+    return AUTOHEX_REPO is not None and (AUTOHEX_REPO / ".git").exists()
+
+
+def load_snapshot(path: Path = RESULTS_JSON) -> Tuple[List[DiffSample], List[DiffSample]]:
+    """Load frozen scores (summaries only, no source code) so the analysis runs without the private repo."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    honest: List[DiffSample] = []
+    attacks: List[DiffSample] = []
+    for s in data["samples"]:
+        d = DiffSample(
+            sample_id=s["sample_id"],
+            kind=s["kind"],
+            tier=s["tier"],
+            target_file=s["target_file"],
+            summary=s["summary"],
+            diff_text="",
+            exploit_viable=s["exploit_viable"],
+            raw_score=float(s["raw_score"]),
+            cues=s.get("cues"),
+        )
+        (honest if d.kind == "honest" else attacks).append(d)
+    return honest, attacks
 
 
 def run_experiment(
     budget: float = 0.05,
     ollama_model: Optional[str] = None,
     save_outputs: bool = True,
+    snapshot: Optional[bool] = None,
 ) -> Tuple[List[DiffSample], List[DiffSample], dict, dict]:
-    honest = extract_honest_commits()
-    attacks = build_attack_diffs()
-
-    for sample in honest + attacks:
+    """Run live (needs AUTOHEX_REPO) or from the frozen snapshot (default when no repo is set)."""
+    use_snapshot = (not live_repo_available()) if snapshot is None else snapshot
+    if use_snapshot:
         if ollama_model:
-            raw, cues = score_diff_ollama(sample.diff_text, ollama_model)
-        else:
-            raw, cues = score_diff_rubric(sample.diff_text)
-        sample.raw_score = raw
-        sample.cues = cues
+            raise ValueError("--ollama-model needs the live repo (set AUTOHEX_REPO); snapshot mode has no diff text.")
+        honest, attacks = load_snapshot()
+    else:
+        honest = extract_honest_commits()
+        attacks = build_attack_diffs()
+        for sample in honest + attacks:
+            if ollama_model:
+                raw, cues = score_diff_ollama(sample.diff_text, ollama_model)
+            else:
+                raw, cues = score_diff_rubric(sample.diff_text)
+            sample.raw_score = raw
+            sample.cues = cues
 
     hon_raw = np.array([d.raw_score for d in honest], dtype=float)
     mu_h = float(np.mean(hon_raw))
@@ -744,7 +776,9 @@ def run_experiment(
                 for d in honest + attacks
             ],
         }
-        RESULTS_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        if not use_snapshot:  # never overwrite the frozen snapshot from itself
+            RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)
+            RESULTS_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         plot_results(honest, attacks, primary)
 
     return honest, attacks, primary, secondary
@@ -754,10 +788,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="010.AutoHex AI Control Phase 1 Experiment")
     parser.add_argument("--budget", type=float, default=0.05, help="Primary audit budget (default 0.05)")
     parser.add_argument("--ollama-model", type=str, default=None, help="Optional local Ollama model name")
+    parser.add_argument("--snapshot", action="store_true", help="Force snapshot mode (frozen scores, no repo needed)")
     args = parser.parse_args()
 
+    live = live_repo_available() and not args.snapshot
+    print(f"Mode: {'LIVE (AUTOHEX_REPO)' if live else 'SNAPSHOT (frozen scores in results/autohex_exp_results.json)'}")
     honest, attacks, primary, secondary = run_experiment(
-        budget=args.budget, ollama_model=args.ollama_model, save_outputs=True
+        budget=args.budget,
+        ollama_model=args.ollama_model,
+        save_outputs=True,
+        snapshot=None if live else True,
     )
 
     print("=== 010.AutoHex Diff Scores (Standardized to Honest mean=0, std=1) ===")

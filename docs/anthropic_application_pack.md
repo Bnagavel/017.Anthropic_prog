@@ -3,67 +3,64 @@
 > [!NOTE]
 > Everything below comes from your CVs. Items in **[brackets]** need your input. Don't claim ML experience you don't have. Reviewers value honesty and evidence.
 
-## 0. Status (updated 20 Nov 2026)
+## 0. Status (updated 21 Nov 2026)
 
 | Item | State |
 |---|---|
-| AI-focused CV draft (section 1) | Updated with PhD work (surrogate models for lightning-strike damage). Brackets left: publications, full supervisory team, any extra Python libraries, GitHub links |
-| Sanitised public repos in `publish/` | `fdt-localai`, `agent-loop`, `beam-model-validation` ready. **New:** `phd-lightning-surrogate` holds pseudocode and algorithm notes only (no code or data, as the PhD is unpublished) |
-| `ai-control-project/` | Empirical AI Control experiment complete (separation 2.202, p_ok 0.600). Not yet reflected in the CV text in section 1 |
-| Still to do | Fill the brackets, add the AI Control result to the CV and motivation statement, export a 1-page PDF, line up 2 referees, check PhD pseudocode with supervisor, push repos, submit |
+| 1-page CV (`cv/`) | Built and exported (`cv/Baskaran_Nagavel_AI_Safety_CV.docx` and `.pdf`, 1 page). Synced with section 1 below (generic private-project descriptions, no publications line, no supervisor name on CV) |
+| Greenhouse form answers | Ready in `docs/greenhouse_application_answers.md` |
+| Referees (for online form if asked) | **1.** Prof. Adrian Murphy (first PhD supervisor, QUB); **2.** Karthikeyan Gopalakrishnan (line manager, Morson Projects). Not listed on the CV |
+| Repos in `publish/` | **Removed (employer-related risk):** `fdt-localai`, `agent-loop`. Kept: `beam-model-validation` (checked; synthetic data, `implementation_guide.md` scrubbed), `phd-lightning-surrogate` (pseudocode only, **private**; Prof. Adrian Murphy's approval needed before outside sharing) |
+| `ai-control-project/` | Empirical AI Control experiment complete (separation 2.202, p_ok 0.600). Scrubbed of local paths and employer doc IDs; runs from a frozen snapshot with no private repo. Added to CV and motivation statement. Keep **private** and share on request |
+| Still to do | Open `cv/Baskaran_Nagavel_AI_Safety_CV.pdf` to check layout, notify referees and collect their email/phone, confirm A220/Transport Canada CV wording, create private GitHub repos (`ai-control-project`, etc.) if sharing on request, submit |
 
 > [!WARNING]
-> This top-level folder holds personal CVs, certificates and the full chat log. Sync it between machines only through a **private** GitHub repo. Publish only the subfolders named above, each as its own new public repo with clean history.
+> This top-level folder holds personal CVs, certificates and the full chat log. Sync it between machines only through a **private** GitHub repo. Create each repo you share as its own new repo with clean history (private for now; give access to an interviewer only if requested). `fdt-localai` and `agent-loop` were removed from this project.
 
 ## 1. AI-focused CV (1 page)
 
+> Exported to `cv/Baskaran_Nagavel_AI_Safety_CV.docx` and `cv/Baskaran_Nagavel_AI_Safety_CV.pdf` (from `cv/cv_source.html`).
+
 **BASKARAN NAGAVEL** · Belfast, UK · baskaranpriyan@gmail.com · +44 7404 850176
-UK Permanent Resident (full UK work authorisation) · GitHub: **[link once repos are public]**
+UK Permanent Resident (full UK work authorisation)
 
 **Profile**
-Safety-critical systems engineer with 16+ years certifying aircraft structures to fatigue and damage-tolerance (F&DT) regulations. Experienced in building evidence for safety claims, validating analysis against full-scale test data, and setting inspection regimes for flaws that can't be fully prevented. Part-time postgraduate researcher at Queen's University Belfast. Moving into empirical AI safety research on evaluation, monitoring and control of frontier models.
-
-**Assurance and technical highlights**
-- Led F&DT certification analyses and reports accepted for **Transport Canada** approval on the A220-100/-300 wing and mid-fuselage.
-- Improved inspection intervals (ALI) for A220 wing primary structure: balancing risk, detectability and maintenance burden.
-- Correlated analysis with static and fatigue test results on critical airframe structures (FEA, NASGRO).
-- Fatigue failure investigation and redesign of an industrial rubber-mixer rotor.
-- Technical lead since 2023: mentoring engineers on certification; delivered classroom F&DT training. Best Project Execution Award (Tech Mahindra).
+Aerospace structural engineer with 17+ years of experience, certifying aircraft structures under fatigue and damage-tolerance (F&DT) regulations — building test-correlated evidence and inspection regimes for flaws that cannot be fully prevented. Part-time PhD researcher (Queen's University Belfast) building surrogate models for expensive simulations. Independently exploring AI tools and empirical AI safety & control out of personal interest, driven by the parallels to aviation assurance and the oversight needed to evaluate AI for regulated engineering.
 
 **Research**
-Part-time PhD, Queen's University Belfast (2021–present): *Simulation Tools for the Design of Lightning Strike Protection Solutions*. Supervisor: **[confirm: Dr Scott Millen is named as reviewer in the thesis workspace; add full supervisory team]**. Differentiation report passed 2023; annual reviews 2024–2026; thesis drafting under way (Chapters 3–5 drafted). **[Add publications / conference output, or delete this note.]**
-- Built coupled electric-thermal (Joule heating) ABAQUS models of lightning damage in composite laminates; showed that fibre-aligned meshing changes predicted damage area, and that high-fidelity runs are too slow (>20 days) for design studies.
-- Designed a 27-run full-factorial DoE (plate length, width, top-ply angle) and automated model generation and post-processing with Python/MATLAB scripts.
-- Built surrogate models to replace the FE runs. A quadratic regression predicts moderate damage area well (train R² 0.991, test R² 0.880). It failed on severe damage area, so I tested cubic and GAM models on 5 held-out non-grid geometries. GAM improved R² (0.82 combined) but gave non-physical step-wise predictions on sparse data. Gaussian Process and Support Vector regression are in progress.
-- Skills transferable to AI safety work: evaluating models on held-out data, honest reporting of failure cases, and working with sparse, expensive-to-generate data.
+**Part-time PhD, Queen's University Belfast (2021–present):** *Simulation Tools for the Design of Lightning Strike Protection Solutions.* Thesis drafting under way.
+- Built coupled electric-thermal (Joule heating) ABAQUS models of lightning damage in composite laminates. Showed that fibre-aligned meshing changes predicted damage area, and that high-fidelity runs (>20 days) are too slow for design studies.
+- Designed a 27-run full-factorial experiment (plate length, width, top-ply angle); automated model generation and post-processing in Python and MATLAB.
+- Built surrogate models to replace the FE runs. Quadratic regression predicts moderate damage area well (train R² 0.991, test R² 0.880) but failed on severe damage. Tested cubic and GAM models on 5 held-out non-grid geometries; GAM improved R² (0.82) but gave non-physical step-wise predictions on sparse data. Reported both outcomes. Gaussian-process and support-vector regression in progress.
 
-**AI / software projects** (2025–2026; **[links once public]**)
-- **F&DT-LocalAI**: offline LLM assistant (local Ollama, Gemma 2 / Qwen 2.5) that replaces 21 Excel VBA macros. It includes a **"zero-hallucination" number verifier** that checks every number in generated prose against a deterministic fact table, a deterministic fallback when the LLM is unavailable, a hybrid retrieval layer, and golden-file evaluations.
-- **24x7 agent harness**: autonomous multi-model coding-agent loop with a **model router** (latency/success telemetry, automatic tier escalation) and a **human approval gate** over Discord (PROCEED / REFINE / SKIP).
-- **AutoHex / HexPrep**: automated hex-meshing pipeline for aircraft fittings (STEP to mesh to validation); 63 commits, 59 test files, developed with agent assistance.
-- **Beam foundation-model fine-tuning**: synthetic problem generation with analytical solutions and a validation framework that scores model output against closed-form solvers.
-- **MCP servers/clients** for reading NASGRO input/output and plotting crack-growth data; PDF extraction toolset; task-logger desktop app.
-- **PhD work (public)**: pseudocode and algorithm descriptions only (no code or data, as the work is unpublished): workflow, surrogate comparison and validation checks. Staged in publish/phd-lightning-surrogate/, to be pushed as a new repo with clean history, e.g. github.com/Bnagavel/phd-lightning-surrogate **[confirm name once pushed]**. The original Study_01 repo stays private (large input files, placeholder commits)
+**Independent AI & AI safety projects (self-directed)**
+- **AI Control experiment (2026).** Reproduced the trusted-monitoring safety calculation from Greenblatt et al. (2023), then applied it to 30 code diffs: 15 real commits from my own meshing codebase and 15 hand-written sabotage diffs, scored by a rule-based monitor. Measured separation 2.2 and 60% exploit viability. At a 5% audit budget the Gaussian model predicted 80% safety against 92% measured (n=15, wide uncertainty). Limitation stated in the write-up: the monitor rules were written knowing the attacks, so this checks the method, not monitor quality. Next step: local-LLM monitor (Ollama).
+- **Autonomous coding loop with human approval gate (2025–26).** Built a multi-model agent loop with automatic model routing and a human approve/refine/skip checkpoint. Identified specification gaming (hard-coded dimensions to pass mesh tests) and added rules against it.
+- **Local-LLM assistant with deterministic output checking (2025–26).** Offline assistant (Ollama, Gemma 2 / Qwen 2.5) that checks every number in generated text against a deterministic table, with a non-LLM fallback and golden-file tests.
+- **Model validation against ground truth.** Synthetic beam problems with closed-form solutions used to score fine-tuned model output.
 
-**Programming and training**
-Python (NAFEMS *FEA for Python*; MITx *Computational Thinking using Python*), Excel VBA, TypeScript, in-house fatigue/fracture codes. LLM tooling: Ollama, Claude/Gemini CLIs, MCP. MATLAB (regression, GAM fitting). Python libraries used in the PhD code: NumPy, pandas, scikit-learn, pyDOE, Matplotlib, seaborn, Plotly, Shapely, Streamlit, plus the ABAQUS Python scripting API. **[Add any others you can be quizzed on.]**
+**Aerospace structural & certification experience**
+- Morson Projects, Belfast — **Stress, Fatigue & Damage Tolerance Engineer / Technical Lead** (Oct 2015–present). Technical lead since 2023: mentoring engineers on certification. Led F&DT certification analyses and reports accepted for Transport Canada approval (A220-100/-300 wing and mid-fuselage). Improved inspection intervals (ALI) for wing primary structure, balancing risk, detectability and maintenance burden. Correlated analysis with static and fatigue test results (FEA, NASGRO).
+- Tech Mahindra (Bombardier ODC), Bangalore — **Lead Engineer** (May 2010–Sep 2015). Static and F&DT analysis of fuselage structures; full-scale test correlation; delivered classroom F&DT training. Best Project Execution Award.
+- National Aerospace Laboratories, Bangalore — **Junior Engineer** (Aug 2008–May 2010). Nacelle structural design.
 
-**Experience**
-- Morson Projects, Belfast: Stress, Fatigue & Damage Tolerance Engineer / Technical Lead (Oct 2015–present)
-- Tech Mahindra (Bombardier ODC), Bangalore: Lead Engineer (May 2010–Sep 2015)
-- National Aerospace Laboratories, Bangalore: Junior Engineer (Aug 2008–May 2010)
+**Skills and training**
+**Python:** NumPy, pandas, scikit-learn, Matplotlib, seaborn, Plotly, pyDOE, Shapely, Streamlit, pytest, ABAQUS scripting API. Also MATLAB, Excel VBA, TypeScript. **LLM tooling:** Ollama, Claude and Gemini CLIs, MCP servers. **Training:** NAFEMS *FEA for Python*; MITx *Computational Thinking using Python*; Baines Simmons *Part 21 Subpart J – Understanding & Optimising your Design Organisation Approval (UK CAA DOA)* and CVE refresher.
 
-**Education**: B.E. Aeronautical Engineering, Madras Institute of Technology (2008). Baines Simmons: *Part 21 Subpart J – Understanding & Optimising your Design Organisation Approval (UK CAA DOA)* and the *CVE refresher* version.
+**Education**
+B.E. Aeronautical Engineering, Madras Institute of Technology (2008). Postgraduate research, Queen's University Belfast (2021–present).
 
-## 2. Motivation statement (≈250 words)
+*(Ready-to-paste Greenhouse form answers are in `docs/greenhouse_application_answers.md`.)*
 
-I have spent 16 years answering one question: *how do we know this system is safe enough to fly?* On A220 and Global 7000 programmes I produced the fatigue and damage-tolerance evidence that regulators accept. That means assuming flaws will occur, predicting how they grow, checking analysis against physical tests, and choosing inspection intervals so problems are caught before they matter.
+## 2. Motivation statement
 
-Frontier AI poses the same question with far less mature answers. Models can develop flaws that we can't fully see or prevent, and we depend on evaluations, monitoring and oversight to catch them in time. I believe the discipline of aviation assurance (safety cases, defence in depth, independent verification, test-correlated evidence) can help make AI evaluation and control more rigorous.
+I have spent 17+ years as an aerospace structural engineer answering one question: *how do we know this structure is safe enough to fly?* Certifying aircraft structures under fatigue and damage-tolerance (F&DT) regulations means assuming flaws will occur, predicting how they grow, correlating analysis against physical tests, and choosing inspection intervals so problems are caught before they compromise safety.
 
-I'm building the empirical skills to contribute directly. **[Describe your project: what you built with open models or the Claude API, what you found, link to the write-up.]** My PhD at Queen's University Belfast builds surrogate models for expensive simulations. I've learned to validate on held-out cases and to report where a model fails, such as a quadratic fit that broke down on severe damage and a GAM that fit well but behaved unphysically. I work in Python daily.
+Seeing how significant AI is becoming across aerospace engineering and my part-time PhD research, I started experimenting hands-on with local LLMs and agentic tools out of personal interest. As I explored practical usage—and thought through how to discuss and justify introducing AI tools responsibly with engineering management in a heavily regulated industry—it became clear that capability alone is not enough. Explaining and governing these systems required concrete **AI safety and control** knowledge, and my interest naturally deepened into AI safety because it follows the same underlying logic as aircraft damage-tolerance assurance: monitoring imperfect systems, bounding silent failures, and designing oversight regimes that hold under worst-case assumptions.
 
-I'm a UK permanent resident, able to commit full time for four months, and keen to work in **[London / remotely]**. I'd like to work on adversarial robustness and AI control, or on evaluations and scalable oversight, and I would welcome a full-time role in this field afterwards.
+Alongside my day job, I began building empirical skills independently. To understand the field practically, I reproduced the trusted-monitoring safety calculation from Greenblatt et al.'s *AI Control* paper and tested it on 30 code diffs from my own meshing codebase (15 real commits and 15 hand-written sabotage diffs) scored by a rule-based monitor. The Gaussian model predicted 80.4% safety at a 5% audit budget against 91.7% measured, though with only 15 attacks and rules tuned knowing them, I treat this strictly as a method check rather than a benchmark—and it taught me how safety hinges on the single subtle attack (`atk_12`) that slips below the threshold. Separately, my QUB PhD builds surrogate models for expensive finite-element simulations, where I validate rigorously on held-out cases and report model breakdowns honestly.
+
+I hold UK Permanent Residency (Indefinite Leave to Remain), can commit full time for four months, and am open to working either in London or remotely within the UK. I would like to contribute to adversarial robustness and AI control, or scalable oversight, and would welcome a full-time role in this field afterwards.
 
 ## 3. Research proposal sketch
 
@@ -90,9 +87,13 @@ I'm a UK permanent resident, able to commit full time for four months, and keen 
 | 6 | Finalise CV and statement, line up referees, and submit |
 
 > [!IMPORTANT]
-> **References:** the process includes a reference check. Line up 2 referees now, such as a Morson/Spirit manager and a QUB supervisor, and tell them in advance.
+> **References (confirmed for online form if asked — not on CV):**
+> 1. **Prof. Adrian Murphy** — First PhD Supervisor, Queen's University Belfast (School of Mechanical & Aerospace Engineering)
+> 2. **Karthikeyan Gopalakrishnan** — Line Manager, Morson Projects
+> *(Give both a heads-up and add their email/phone before submitting.)*
 >
 > **Employer data:** don't publish any Spirit/Bombardier/Airbus data or methods (e.g. BM7024). Use public NASGRO-style examples only.
+> **PhD sharing:** get **Prof. Adrian Murphy's** approval before sharing `publish/phd-lightning-surrogate/` outside. (Dr Scott Millen was listed only as an internal thesis reviewer.)
 
 ## 5. Publishing your existing work (from `C:\Bask\00.AI`)
 
@@ -100,14 +101,14 @@ You already have more AI-relevant work than I assumed. The sorted list below sho
 
 | Project | Publish? | Why it matters to Anthropic | Before publishing |
 |---|---|---|---|
-| `013.LocalAI` | ✅ **Yes (flagship)** | Number verifier = hallucination control; local-only gateway; golden evals; deterministic fallback | Remove OEM-specific glossary, Golihat/Spectrum files and any real data |
-| `016.24x7_Agent` | ✅ Yes (core of your proposal) | Autonomous agent with permission-skipping CLI flags, a router, and a human approval gate: directly relevant to **AI control** | **Delete `.env` and rotate the Discord token**; remove logs, attachments and `settings.local.json` |
+| `013.LocalAI` | ❌ **Removed (employer-related risk)** | Number verifier = hallucination control; local-only gateway; golden evals; deterministic fallback | Remove OEM-specific glossary, Golihat/Spectrum files and any real data |
+| `016.24x7_Agent` | ❌ **Removed (employer-related risk)** | Autonomous agent with permission-skipping CLI flags, a router, and a human approval gate: directly relevant to **AI control** | **Delete `.env` and rotate the Discord token**; remove logs, attachments and `settings.local.json` |
 | `006.BeamFoundationModel_Training` | ✅ Yes | LLM fine-tuning plus validation against ground truth | Drop `.venv`, checkpoints and large data |
 | `010.AutoHex` | ⚠️ Optional | Shows engineering rigour (63 commits, 59 test files) | Check there is no employer geometry |
 | `001.NASGRO_input_output`, `002.MCP_Client` | ⚠️ Optional | MCP tool-building | Remove NASGRO output from real programmes |
 | `008.pdf_parser` | ❌ No | Built around Bombardier/Airbus methodology documents (AM7024) | Proprietary |
 | `003`, `004`, `011`, `012`, `015`, `014` | Skip for this application | Not relevant to AI safety | n/a |
-| PhD code (`Study_01`) | ⚠️ Pseudocode only | Shows research method without releasing unpublished code | Done: see `publish/phd-lightning-surrogate/`. Keep `Study_01` private |
+| PhD code (`Study_01`) | ⚠️ Pseudocode only, private for now | Shows research method without releasing unpublished code | Done: see `publish/phd-lightning-surrogate/`. Keep `Study_01` private |
 
 > [!CAUTION]
 > Check for committed secrets and employer-confidential data in every repo before you make it public. Git history counts: use a fresh repo with a clean history if in doubt.

@@ -339,7 +339,7 @@ Once the attacker attacks often enough that *some* attack is almost certain (`q 
 ## Part 4. Running it and reading the results
 
 ```
-cd C:\Bask\00.AI\017.Anthropic_prog\ai-control-project
+cd ai-control-project
 python src\control_sim.py
 ```
 

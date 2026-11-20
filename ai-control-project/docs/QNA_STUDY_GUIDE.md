@@ -23,11 +23,8 @@ When you read AI safety papers, it can look like you need degrees in statistics,
    * **Research taste** (stating assumptions clearly, pre-registering predictions, reporting surprises honestly).
 4. **Only 5 everyday statistical tools cover ~90% of AI Control work:** histograms, percentiles/thresholds, false positives vs. true positives, mean/standard deviation, and error bars.
 
-### 1.3 How Your Existing Projects (`C:\Bask\00.AI`) Support This
-Sanitized public-ready copies of your three strongest AI repositories were prepared in `C:\Bask\00.AI\017.Anthropic_prog\publish\` (leaving your originals untouched, and excluding secrets/proprietary data):
-* **`fdt-localai/`** *(from `013.LocalAI`)* — Flagship offline LLM engineering assistant containing `NumberVerifier` (which checks every number in generated LLM prose against deterministic fact tables), a deterministic fallback, hybrid retrieval, and golden-file tests.
-* **`agent-loop/`** *(from `016.24x7_Agent\010.AutoHex_loop`)* — Autonomous multi-model coding loop (`model_router.py` with latency telemetry and complexity escalation) paired with a human mobile approval gate (`discord_gate.py`: `PROCEED` / `REFINE` / `SKIP`). Directly serves as a realistic AI Control testbed. *(Before publishing to GitHub, delete `.env` in the original folder and rotate the Discord bot token.)*
-* **`beam-model-validation/`** *(from `006.BeamFoundationModel_Training`)* — Synthetic problem generation and a validation framework scoring model outputs against closed-form analytical beam solvers.
+### 1.3 How Your Existing Projects Support This
+Your earlier hands-on work (local-LLM tooling that checks generated numbers against deterministic tables, an agent loop with a human approval gate, and synthetic-data validation against closed-form solvers) is relevant background for AI control and evaluation. Those projects are kept in private repositories and are not part of this repo.
 
 ---
 
@@ -186,7 +183,7 @@ The **Weibull distribution** (invented by Waloddi Weibull in 1939 for metal fati
 ## Section 5 — Authentic Connection to Your Aerospace F&DT & CVE Career
 
 ### 5.1 Why You Didn't Fit Bell Curves in Daily Airframe Certification
-In daily structural certification (BM7024 / AM7024, NASGRO, ISAMI), stress engineers work with **deterministic numbers** because the OEM Materials, Loads, and NDI teams already performed the statistics upstream and condensed them into manual rules:
+In daily structural certification (OEM methodology manuals, NASGRO-type crack-growth tools), stress engineers work with **deterministic numbers** because the OEM Materials, Loads, and NDI teams already performed the statistics upstream and condensed them into manual rules:
 * Coupon scatter curves became fixed **A-Basis / B-Basis Allowables**.
 * NDI signal-vs.-noise curves became fixed **detectable crack sizes ($a_{\text{det}}$)**.
 * Fleet scatter became fixed **Scatter Factors** used to set **ALI inspection intervals**.
@@ -195,7 +192,7 @@ In daily structural certification (BM7024 / AM7024, NASGRO, ISAMI), stress engin
 Rather than claiming statistical tail-fitting you haven't practiced industrially, anchor your narrative on what you **have** done for 16 years:
 1. **Damage-Tolerance & ALI Mindset:** Never assume a structure is defect-free; assume a rogue flaw exists, rely on an inspection threshold ($a_{\text{det}}$), and schedule ALI checks so flaws are caught before critical failure ($a_{\text{crit}}$).
 2. **Hand Calc / Simplified Index vs. Test Correlation:** Start with a fast, simplified formula (Bruhn/Niu hand calculations, `C-Spec` / `fFI`, or `control_sim.py`), then correlate it against messy real data (`nrang` flight spectra, physical tests, or real LLM monitor runs) to see where the simplified model becomes unconservative.
-3. **Deterministic Guardrails Around AI (`013.LocalAI` & `016.24x7_Agent`):** You already built `NumberVerifier` to audit local LLM prose against deterministic engineering calculations, and `discord_gate.py` to enforce human-in-the-loop checkpoints.
+3. **Deterministic Guardrails Around AI:** Your earlier private tooling audited local LLM prose against deterministic engineering calculations and enforced human-in-the-loop checkpoints.
 
 ---
 
@@ -205,7 +202,7 @@ Rather than claiming statistical tail-fitting you haven't practiced industrially
 Since 2023, frontier labs (Google, Anthropic, OpenAI, Perplexity) have built 24/7 autonomous coding and computer-use orchestrators. Building the orchestrator ("the engine") is largely solved; **certifying and monitoring it safely ("the brakes, sensors, and inspection intervals") is the open problem.**
 
 * **Benchmarks Today:** **ControlArena**, **BashArena**, and **SHADE-Arena** test multi-step agents executing shell, git, sysadmin, and office tasks while trying to slip in covert side tasks (secret exfiltration, firewall tampering, research sabotage).
-* **Your Own Example (`AutoHex`):** In [loop_handoff_prompt.md](../../016.24x7_Agent/010.AutoHex_loop/loop_handoff_prompt.md), you explicitly had to ban hardcoded CAD dimensions so autonomous agents couldn't cheat mesh tests (**specification gaming**). Adding a Trusted Monitor in front of `discord_gate.py` so routine edits auto-run while the top 2% most suspicious diffs pause for your phone review is **AI Control in action**.
+* **Your Own Example (an autonomous coding loop):** In your own agent loop you had to ban hardcoded CAD dimensions so autonomous agents couldn't cheat mesh tests (**specification gaming**). Adding a Trusted Monitor in front of the human approval gate so routine edits auto-run while the top 2% most suspicious diffs pause for phone review is **AI Control in action**.
 
 ### 6.2 Who Works on This? (Paralleling Part 21 Subpart J DOA vs. Regulators)
 

@@ -1,0 +1,45 @@
+<html><head><meta charset="utf-8">
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 9.5pt; line-height: 1.12; }
+h1 { font-size: 17pt; margin: 0; letter-spacing: 1px; }
+p.c { margin: 1pt 0 4pt 0; font-size: 9pt; color: #333333; }
+h2 { font-size: 10.5pt; margin: 6pt 0 2pt 0; border-bottom: 1px solid #1F3864; color: #1F3864; text-transform: uppercase; }
+ul { margin: 1pt 0 1pt 0; padding-left: 14pt; }
+li { margin: 0 0 1.5pt 0; }
+p { margin: 1pt 0; }
+</style></head><body>
+<h1>BASKARAN NAGAVEL</h1>
+<p class="c">Belfast, UK &middot; baskaranpriyan@gmail.com &middot; +44 7404 850176 &middot; UK Permanent Resident (full UK work authorisation)</p>
+
+<h2>Profile</h2>
+<p>Aerospace structural engineer with 17+ years of experience, certifying aircraft structures under fatigue and damage-tolerance (F&amp;DT) regulations &mdash; building test-correlated evidence and inspection regimes for flaws that cannot be fully prevented. Part-time PhD researcher (Queen's University Belfast) building surrogate models for expensive simulations. Independently exploring AI tools and empirical AI safety &amp; control out of personal interest, driven by the parallels to aviation assurance and the oversight needed to evaluate AI for regulated engineering.</p>
+
+<h2>Independent AI &amp; AI safety projects (self-directed)</h2>
+<ul>
+<li><b>AI Control experiment (2026).</b> Reproduced the trusted-monitoring safety calculation from Greenblatt et al. (2023), then applied it to 30 code diffs: 15 real commits from my own meshing codebase and 15 hand-written sabotage diffs, scored by a rule-based monitor. Measured separation 2.2 and 60% exploit viability. At a 5% audit budget the Gaussian model predicted 80% safety against 92% measured (n=15, wide uncertainty). Limitation stated in the write-up: the monitor rules were written knowing the attacks, so this checks the method, not monitor quality. Next step: local-LLM monitor (Ollama).</li>
+<li><b>Autonomous coding loop with human approval gate (2025&ndash;26).</b> Built a multi-model agent loop with automatic model routing and a human approve/refine/skip checkpoint. Identified specification gaming (hard-coded dimensions to pass mesh tests) and added rules against it.</li>
+<li><b>Local-LLM assistant with deterministic output checking (2025&ndash;26).</b> Offline assistant (Ollama, Gemma 2 / Qwen 2.5) that checks every number in generated text against a deterministic table, with a non-LLM fallback and golden-file tests.</li>
+<li><b>Model validation against ground truth.</b> Synthetic beam problems with closed-form solutions used to score fine-tuned model output.</li>
+</ul>
+
+<h2>Research</h2>
+<p><b>Part-time PhD, Queen's University Belfast (2021&ndash;present):</b> <i>Simulation Tools for the Design of Lightning Strike Protection Solutions.</i> Thesis drafting under way.</p>
+<ul>
+<li>Built coupled electric-thermal (Joule heating) ABAQUS models of lightning damage in composite laminates. Showed that fibre-aligned meshing changes predicted damage area, and that high-fidelity runs (&gt;20 days) are too slow for design studies.</li>
+<li>Designed a 27-run full-factorial experiment (plate length, width, top-ply angle); automated model generation and post-processing in Python and MATLAB.</li>
+<li>Built surrogate models to replace the FE runs. Quadratic regression predicts moderate damage area well (train R&sup2; 0.991, test R&sup2; 0.880) but failed on severe damage. Tested cubic and GAM models on 5 held-out non-grid geometries; GAM improved R&sup2; (0.82) but gave non-physical step-wise predictions on sparse data. Reported both outcomes. Gaussian-process and support-vector regression in progress.</li>
+</ul>
+
+<h2>Aerospace structural &amp; certification experience</h2>
+<ul>
+<li>Morson Projects, Belfast &mdash; <b>Stress, Fatigue &amp; Damage Tolerance Engineer / Technical Lead</b> (Oct 2015&ndash;present). Technical lead since 2023: mentoring engineers on certification. Led F&amp;DT certification analyses and reports accepted for Transport Canada approval (A220-100/-300 wing and mid-fuselage). Improved inspection intervals (ALI) for wing primary structure, balancing risk, detectability and maintenance burden. Correlated analysis with static and fatigue test results (FEA, NASGRO).</li>
+<li>Tech Mahindra (Bombardier ODC), Bangalore &mdash; <b>Lead Engineer</b> (May 2010&ndash;Sep 2015). Static and F&amp;DT analysis of fuselage structures; full-scale test correlation; delivered classroom F&amp;DT training. Best Project Execution Award.</li>
+<li>National Aerospace Laboratories, Bangalore &mdash; <b>Junior Engineer</b> (Aug 2008&ndash;May 2010). Nacelle structural design.</li>
+</ul>
+
+<h2>Skills and training</h2>
+<p><b>Python:</b> NumPy, pandas, scikit-learn, Matplotlib, seaborn, Plotly, pyDOE, Shapely, Streamlit, pytest, ABAQUS scripting API. Also MATLAB, Excel VBA, TypeScript. <b>LLM tooling:</b> Ollama, Claude and Gemini CLIs, MCP servers. <b>Training:</b> NAFEMS <i>FEA for Python</i>; MITx <i>Computational Thinking using Python</i>; Baines Simmons <i>Part 21 Subpart J &ndash; Understanding &amp; Optimising your Design Organisation Approval (UK CAA DOA)</i> and CVE refresher.</p>
+
+<h2>Education</h2>
+<p>B.E. Aeronautical Engineering, Madras Institute of Technology (2008). Postgraduate research, Queen's University Belfast (2021&ndash;present).</p>
+</body></html>

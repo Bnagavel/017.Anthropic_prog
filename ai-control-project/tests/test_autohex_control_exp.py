@@ -20,3 +20,11 @@ def test_autohex_experiment_sanity():
     assert primary["sep_measured"] > 1.0
     assert 0.0 < primary["safety_gauss"] <= 1.0
     assert 0.0 < primary["safety_emp"] <= 1.0
+
+
+def test_snapshot_mode_reproduces_frozen_results():
+    honest, attacks, primary, _ = run_experiment(budget=0.05, save_outputs=False, snapshot=True)
+    assert len(honest) == 15 and len(attacks) == 15
+    assert abs(primary["sep_measured"] - 2.202) < 0.01
+    assert abs(primary["p_ok_measured"] - 0.6) < 1e-9
+    assert abs(primary["safety_emp"] - 11 / 12) < 1e-9

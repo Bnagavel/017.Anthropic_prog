@@ -6,10 +6,9 @@ import os
 from pathlib import Path
 from statistics import NormalDist
 
-# Ensure writable MPLCONFIGDIR inside scratch before importing matplotlib
-SCRATCH_MPL = Path(
-    r"C:\Users\Baskaran.Nagavel\.gemini\antigravity\brain\c8301381-c31f-449c-9a2a-3653b4183650\scratch\mpl"
-)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# Writable matplotlib cache inside the project (git-ignored)
+SCRATCH_MPL = PROJECT_ROOT / ".cache" / "mpl"
 SCRATCH_MPL.mkdir(parents=True, exist_ok=True)
 os.environ.setdefault("MPLCONFIGDIR", str(SCRATCH_MPL))
 
@@ -27,11 +26,8 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.util import Inches, Pt
 
 # Output paths
-PROJECT_ROOT = Path(r"C:\Bask\00.AI\017.Anthropic_prog\ai-control-project")
 FIG_DIR_PROJ = PROJECT_ROOT / "results" / "figures"
-FIG_DIR_ART = Path(
-    r"C:\Users\Baskaran.Nagavel\.gemini\antigravity\brain\c8301381-c31f-449c-9a2a-3653b4183650"
-)
+FIG_DIR_ART = FIG_DIR_PROJ  # single output location (name kept for compatibility)
 PPTX_PATH = PROJECT_ROOT / "docs" / "AI_Control_Statistics_Walkthrough.pptx"
 
 FIG_DIR_PROJ.mkdir(parents=True, exist_ok=True)
