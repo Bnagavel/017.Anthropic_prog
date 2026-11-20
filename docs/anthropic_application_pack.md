@@ -19,7 +19,11 @@ Safety-critical systems engineer with 16+ years certifying aircraft structures t
 - Technical lead since 2023: mentoring engineers on certification; delivered classroom F&DT training. Best Project Execution Award (Tech Mahindra).
 
 **Research**
-Part-time postgraduate research, Queen's University Belfast (2021–present): simulation tools for lightning-strike protection in composite structures. **[Add supervisor, any publications or conference output.]**
+Part-time PhD, Queen's University Belfast (2021–present): *Simulation Tools for the Design of Lightning Strike Protection Solutions*. Supervisor: **[confirm: Dr Scott Millen is named as reviewer in the thesis workspace; add full supervisory team]**. Differentiation report passed 2023; annual reviews 2024–2026; thesis drafting under way (Chapters 3–5 drafted). **[Add publications / conference output, or delete this note.]**
+- Built coupled electric-thermal (Joule heating) ABAQUS models of lightning damage in composite laminates; showed that fibre-aligned meshing changes predicted damage area, and that high-fidelity runs are too slow (>20 days) for design studies.
+- Designed a 27-run full-factorial DoE (plate length, width, top-ply angle) and automated model generation and post-processing with Python/MATLAB scripts.
+- Built surrogate models to replace the FE runs. A quadratic regression predicts moderate damage area well (train R² 0.991, test R² 0.880). It failed on severe damage area, so I tested cubic and GAM models on 5 held-out non-grid geometries. GAM improved R² (0.82 combined) but gave non-physical step-wise predictions on sparse data. Gaussian Process and Support Vector regression are in progress.
+- Skills transferable to AI safety work: evaluating models on held-out data, honest reporting of failure cases, and working with sparse, expensive-to-generate data.
 
 **AI / software projects** (2025–2026; **[links once public]**)
 - **F&DT-LocalAI**: offline LLM assistant (local Ollama, Gemma 2 / Qwen 2.5) that replaces 21 Excel VBA macros. It includes a **"zero-hallucination" number verifier** that checks every number in generated prose against a deterministic fact table, a deterministic fallback when the LLM is unavailable, a hybrid retrieval layer, and golden-file evaluations.
@@ -27,10 +31,10 @@ Part-time postgraduate research, Queen's University Belfast (2021–present): si
 - **AutoHex / HexPrep**: automated hex-meshing pipeline for aircraft fittings (STEP to mesh to validation); 63 commits, 59 test files, developed with agent assistance.
 - **Beam foundation-model fine-tuning**: synthetic problem generation with analytical solutions and a validation framework that scores model output against closed-form solvers.
 - **MCP servers/clients** for reading NASGRO input/output and plotting crack-growth data; PDF extraction toolset; task-logger desktop app.
-- **PhD work (public)**: **[GitHub link]**
+- **PhD work (public)**: FE automation scripts and surrogate-modelling code (ABAQUS input generation, Python/MATLAB post-processing, regression/GAM fits). github.com/Bnagavel/Study_01 **[confirm the repo is public]**
 
 **Programming and training**
-Python (NAFEMS *FEA for Python*; MITx *Computational Thinking using Python*), Excel VBA, TypeScript, in-house fatigue/fracture codes. LLM tooling: Ollama, Claude/Gemini CLIs, MCP. **[Add libraries: NumPy/pandas/PyTorch/transformers, etc.]**
+Python (NAFEMS *FEA for Python*; MITx *Computational Thinking using Python*), Excel VBA, TypeScript, in-house fatigue/fracture codes. LLM tooling: Ollama, Claude/Gemini CLIs, MCP. MATLAB (regression, GAM fitting). Python libraries used in the PhD code: NumPy, pandas, scikit-learn, pyDOE, Matplotlib, seaborn, Plotly, Shapely, Streamlit, plus the ABAQUS Python scripting API. **[Add any others you can be quizzed on.]**
 
 **Experience**
 - Morson Projects, Belfast: Stress, Fatigue & Damage Tolerance Engineer / Technical Lead (Oct 2015–present)
@@ -45,7 +49,7 @@ I have spent 16 years answering one question: *how do we know this system is saf
 
 Frontier AI poses the same question with far less mature answers. Models can develop flaws that we can't fully see or prevent, and we depend on evaluations, monitoring and oversight to catch them in time. I believe the discipline of aviation assurance (safety cases, defence in depth, independent verification, test-correlated evidence) can help make AI evaluation and control more rigorous.
 
-I'm building the empirical skills to contribute directly. **[Describe your project: what you built with open models or the Claude API, what you found, link to the write-up.]** I'm completing postgraduate research at Queen's University Belfast, so I'm used to structured investigation, and I work in Python daily.
+I'm building the empirical skills to contribute directly. **[Describe your project: what you built with open models or the Claude API, what you found, link to the write-up.]** My PhD at Queen's University Belfast builds surrogate models for expensive simulations. I've learned to validate on held-out cases and to report where a model fails, such as a quadratic fit that broke down on severe damage and a GAM that fit well but behaved unphysically. I work in Python daily.
 
 I'm a UK permanent resident, able to commit full time for four months, and keen to work in **[London / remotely]**. I'd like to work on adversarial robustness and AI control, or on evaluations and scalable oversight, and I would welcome a full-time role in this field afterwards.
 
