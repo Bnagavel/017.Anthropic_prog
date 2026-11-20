@@ -31,7 +31,7 @@ Part-time PhD, Queen's University Belfast (2021–present): *Simulation Tools fo
 - **AutoHex / HexPrep**: automated hex-meshing pipeline for aircraft fittings (STEP to mesh to validation); 63 commits, 59 test files, developed with agent assistance.
 - **Beam foundation-model fine-tuning**: synthetic problem generation with analytical solutions and a validation framework that scores model output against closed-form solvers.
 - **MCP servers/clients** for reading NASGRO input/output and plotting crack-growth data; PDF extraction toolset; task-logger desktop app.
-- **PhD work (public)**: FE automation scripts and surrogate-modelling code (ABAQUS input generation, Python/MATLAB post-processing, regression/GAM fits). github.com/Bnagavel/Study_01 **[confirm the repo is public]**
+- **PhD work (public)**: pseudocode and algorithm descriptions only (no code or data, as the work is unpublished): workflow, surrogate comparison and validation checks. Staged in publish/phd-lightning-surrogate/, to be pushed as a new repo with clean history, e.g. github.com/Bnagavel/phd-lightning-surrogate **[confirm name once pushed]**. The original Study_01 repo stays private (large input files, placeholder commits)
 
 **Programming and training**
 Python (NAFEMS *FEA for Python*; MITx *Computational Thinking using Python*), Excel VBA, TypeScript, in-house fatigue/fracture codes. LLM tooling: Ollama, Claude/Gemini CLIs, MCP. MATLAB (regression, GAM fitting). Python libraries used in the PhD code: NumPy, pandas, scikit-learn, pyDOE, Matplotlib, seaborn, Plotly, Shapely, Streamlit, plus the ABAQUS Python scripting API. **[Add any others you can be quizzed on.]**
