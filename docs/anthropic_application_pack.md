@@ -3,6 +3,18 @@
 > [!NOTE]
 > Everything below comes from your CVs. Items in **[brackets]** need your input. Don't claim ML experience you don't have. Reviewers value honesty and evidence.
 
+## 0. Status (updated 20 Nov 2026)
+
+| Item | State |
+|---|---|
+| AI-focused CV draft (section 1) | Updated with PhD work (surrogate models for lightning-strike damage). Brackets left: publications, full supervisory team, any extra Python libraries, GitHub links |
+| Sanitised public repos in `publish/` | `fdt-localai`, `agent-loop`, `beam-model-validation` ready. **New:** `phd-lightning-surrogate` holds pseudocode and algorithm notes only (no code or data, as the PhD is unpublished) |
+| `ai-control-project/` | Empirical AI Control experiment complete (separation 2.202, p_ok 0.600). Not yet reflected in the CV text in section 1 |
+| Still to do | Fill the brackets, add the AI Control result to the CV and motivation statement, export a 1-page PDF, line up 2 referees, check PhD pseudocode with supervisor, push repos, submit |
+
+> [!WARNING]
+> This top-level folder holds personal CVs, certificates and the full chat log. Sync it between machines only through a **private** GitHub repo. Publish only the subfolders named above, each as its own new public repo with clean history.
+
 ## 1. AI-focused CV (1 page)
 
 **BASKARAN NAGAVEL** · Belfast, UK · baskaranpriyan@gmail.com · +44 7404 850176
@@ -95,6 +107,7 @@ You already have more AI-relevant work than I assumed. The sorted list below sho
 | `001.NASGRO_input_output`, `002.MCP_Client` | ⚠️ Optional | MCP tool-building | Remove NASGRO output from real programmes |
 | `008.pdf_parser` | ❌ No | Built around Bombardier/Airbus methodology documents (AM7024) | Proprietary |
 | `003`, `004`, `011`, `012`, `015`, `014` | Skip for this application | Not relevant to AI safety | n/a |
+| PhD code (`Study_01`) | ⚠️ Pseudocode only | Shows research method without releasing unpublished code | Done: see `publish/phd-lightning-surrogate/`. Keep `Study_01` private |
 
 > [!CAUTION]
 > Check for committed secrets and employer-confidential data in every repo before you make it public. Git history counts: use a fresh repo with a clean history if in doubt.

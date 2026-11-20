@@ -32,21 +32,23 @@ Already scrubbed of employer/OEM references (`A220`, `Golihat`, `Bombardier`, `A
 - `publish/fdt-localai/` (from `013.LocalAI`)
 - `publish/agent-loop/` (from `016.24x7_Agent\010.AutoHex_loop`)
 - `publish/beam-model-validation/` (from `006.BeamFoundationModel_Training`)
+- `publish/phd-lightning-surrogate/` (PhD): **pseudocode and algorithm notes only**, no code or data (unpublished research). Its README says it is public only to share a glimpse. The original PhD repo (`Study_01`) is NOT in this folder and must stay private.
 
 ---
 
 ## 2. Exact Next Steps on the New Machine
 
 1. **Answer the 4 remaining `[brackets]` in `docs/anthropic_application_pack.md`:**
-   - QUB PhD supervisor name / publications (or keep topic only)
+   - QUB PhD supervisor name / publications (or keep topic only). Dr Scott Millen is the only name found in the thesis workspace
    - Python libraries you are comfortable being quizzed on (e.g., `NumPy, SciPy, Matplotlib, pytest, Pydantic`)
    - Work location preference for the 4 months (London in-person/hybrid, remote from Belfast + travel, or either)
    - Two referees to notify in advance
 2. **Update `docs/anthropic_application_pack.md`** to include your completed `ai-control-project` empirical results (`sep = 2.202`, `p_ok = 0.600`, Gaussian vs. empirical safety on `010.AutoHex`).
 3. **Export a clean 1-page PDF CV** and prepare copy-paste answers for the Greenhouse form.
-4. **Push the 4 clean repos to public GitHub (`github.com/Bnagavel`):**
+4. **Push the 5 clean repos to public GitHub (`github.com/Bnagavel`), each as a new repo with fresh history (check `phd-lightning-surrogate` with your PhD supervisor first):**
    - `ai-control-project`
    - `fdt-localai`
    - `agent-loop`
    - `beam-model-validation`
+   - `phd-lightning-surrogate`
 5. **Submit application** to [Anthropic Fellows Program, AI Safety & Security (5183044008)](https://job-boards.greenhouse.io/anthropic/jobs/5183044008).
